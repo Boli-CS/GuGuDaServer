@@ -16,6 +16,7 @@
 	<!-- 开始扫描controller -->
  	<context:component-scan base-package="com.PitaYa.GuGuDa.controllers"/>
  	<context:component-scan base-package="com.PitaYa.GuGuDa.service.circle"/>
+ 	<context:component-scan base-package="com.PitaYa.GuGuDa.service.download"/>
 	<!-- 结束扫描controller -->
 	
 	<!-- 开始扫描service -->
@@ -25,7 +26,8 @@
 	<!-- Dao类扫描 -->
 	<bean id="daoScanPackage" class="java.lang.String">
 		<constructor-arg type="java.lang.String" value="
-			com.PitaYa.GuGuDa.dao.circle
+			com.PitaYa.GuGuDa.dao.circle,
+			com.PitaYa.GuGuDa.dao.user
 		"/>
 	</bean>
 	

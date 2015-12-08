@@ -1,4 +1,4 @@
-package com.PitaYa.GuGuDa.dao.circle;
+package com.PitaYa.GuGuDa.dao.user;
 
 import org.apache.ibatis.annotations.Param;
 
