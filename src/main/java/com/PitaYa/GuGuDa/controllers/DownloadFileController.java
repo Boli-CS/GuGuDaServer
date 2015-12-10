@@ -1,7 +1,5 @@
 package com.PitaYa.GuGuDa.controllers;
 
-import java.io.File;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;

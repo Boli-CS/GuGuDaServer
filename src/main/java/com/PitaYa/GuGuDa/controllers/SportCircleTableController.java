@@ -1,14 +1,11 @@
 package com.PitaYa.GuGuDa.controllers;
 
-import java.io.File;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +24,13 @@ public class SportCircleTableController {
  	
 	@RequestMapping(value="/circle/cells", method = RequestMethod.GET)
 	public List<CircleTableViewCellDomain> trendsCells(@RequestParam("type") Integer type) {
-		List<CircleTableViewCellDomain> result = circleTableService.findNewestSportCircle(type);
+		List<CircleTableViewCellDomain> result = null;
+		try {
+			result = circleTableService.findNewestSportCircle(type);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return result;
 	}
 	

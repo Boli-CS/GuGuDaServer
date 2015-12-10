@@ -7,4 +7,16 @@
 		select * from User where id = #{ID, jdbcType=INTEGER}
 	</select>
 
+	<insert id="insert" parameterType="com.PitaYa.model.circle.User">
+		insert into User(
+			HeadPortrait,
+			RegisterDate,
+			UserName
+		) values (
+			#{headPortrait, jdbcType=CHAR},
+			#{registerDate, jdbcType=DATE},
+			#{userName, jdbcType=CHAR}
+		)
+		
+	</insert>
 </mapper>

@@ -1,6 +1,7 @@
 package com.PitaYa.GuGuDa.service.circle.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CircleTableServiceImpl implements CircleTableService{
 	UserDao userDao;
 	
 	@Override
-	public List<CircleTableViewCellDomain> findNewestSportCircle(Integer circleCellType) {
+	public List<CircleTableViewCellDomain> findNewestSportCircle(Integer circleCellType) throws Exception {
 		CircleCellTypes circleCellTypes = CircleCellTypes.getInstance(circleCellType);
 		List<CircleTableViewCellDomain> circleTableViewCellDomains = new ArrayList<CircleTableViewCellDomain>();
 		if(circleCellTypes != null) {

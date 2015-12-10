@@ -3,24 +3,29 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
 	<mvc:annotation-driven/>
 	
 	<!-- 开始扫描controller -->
  	<context:component-scan base-package="com.PitaYa.GuGuDa.controllers"/>
- 	<context:component-scan base-package="com.PitaYa.GuGuDa.service.circle"/>
- 	<context:component-scan base-package="com.PitaYa.GuGuDa.service.download"/>
 	<!-- 结束扫描controller -->
 	
 	<!-- 开始扫描service -->
-	
+ 	<context:component-scan base-package="com.PitaYa.GuGuDa.service.circle"/>
+ 	<context:component-scan base-package="com.PitaYa.GuGuDa.service.download"/>
 	<!-- 结束扫描service -->
 	
 	<!-- Dao类扫描 -->
@@ -32,12 +37,12 @@
 	</bean>
 	
 	<!-- 数据库配置文件 -->
-	<bean id="databaseConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<!-- <bean id="databaseConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc.properties"/>
-	</bean>
+	</bean> -->
 		
 	<!-- 数据库配置 -->
-	<bean id="GuGuDaDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" depends-on="databaseConfigure">
+	<bean id="GuGuDaDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
 		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/GuGuDa"/>
 		<property name="user" value="root"/>
@@ -54,4 +59,36 @@
 		<property name="basePackage" ref="daoScanPackage"/>
 		<property name="sqlSessionFactory" ref="GuGuDaSqlSessionFactory"/>
 	</bean>
+	
+	<!-- 数据库事务管理 -->
+	<bean id="databaseTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="GuGuDaDataSource"/>
+	</bean>
+	
+	<tx:advice id="databaseAdvice" transaction-manager="databaseTransactionManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" rollback-for="java.lang.Throwable"/>
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" rollback-for="java.lang.Throwable"/>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:advisor pointcut="execution(* com.PitaYa.GuGuDa.service..*.*(..))" advice-ref="databaseAdvice"/>
+	</aop:config>
+	<!-- 数据库事务管理结束 -->
+	
+	<!-- log输出切面配置 -->
+	<bean id="logAopAspectBean" class="com.PitaYa.GuGuDa.aspect.LogAspectService"/>
+	
+	<aop:config>
+		<aop:aspect id="logAopAspect" ref="logAopAspectBean">
+			<aop:pointcut id="serviceLogAopPointCut" expression="execution(* com.PitaYa.GuGuDa.service..impl.*.*(..))"/>
+			<aop:pointcut id="controllersLogAopPointCut" expression="execution(* com.PitaYa.GuGuDa.controllers..*.*(..))"/>
+			<aop:around pointcut-ref="serviceLogAopPointCut" method="doAround"/>
+			<aop:around pointcut-ref="controllersLogAopPointCut" method="doAround"/>
+		</aop:aspect>
+	</aop:config>
+	<!-- log输出切面配置结束 -->
+	
 </beans>

@@ -13,5 +13,6 @@ public interface UserDao {
 	
 	User getUser(@Param("ID")Integer ID);
 	
+	Integer insert(User user);
 	
 }
