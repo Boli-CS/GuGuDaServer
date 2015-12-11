@@ -2,7 +2,7 @@ package com.PitaYa.GuGuDa.dao.user;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.PitaYa.model.circle.User;
+import com.PitaYa.model.user.User;
 
 /**
  * 查询User表格相关数据

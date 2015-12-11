@@ -26,20 +26,23 @@
 	<!-- 开始扫描service -->
  	<context:component-scan base-package="com.PitaYa.GuGuDa.service.circle"/>
  	<context:component-scan base-package="com.PitaYa.GuGuDa.service.download"/>
+ 	<context:component-scan base-package="com.PitaYa.GuGuDa.service.sport"/>
 	<!-- 结束扫描service -->
 	
 	<!-- Dao类扫描 -->
 	<bean id="daoScanPackage" class="java.lang.String">
 		<constructor-arg type="java.lang.String" value="
 			com.PitaYa.GuGuDa.dao.circle,
-			com.PitaYa.GuGuDa.dao.user
+			com.PitaYa.GuGuDa.dao.user,
+			com.PitaYa.GuGuDa.dao.sport
 		"/>
 	</bean>
 	
 	<!-- 数据库配置文件 -->
-	<!-- <bean id="databaseConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<!-- <bean id="databaseConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc.properties"/>
 	</bean> -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
 		
 	<!-- 数据库配置 -->
 	<bean id="GuGuDaDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">

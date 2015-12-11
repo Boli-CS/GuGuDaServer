@@ -6,5 +6,8 @@
 		
 		<!-- 运动圈 -->
 		<mapper resource = "dao/circle/circletablecell-mapper.xml"/>
+		
+		<!-- 运动 -->
+		<mapper resource = "dao/sport/sportrecord-mapper.xml"/>
 	</mappers> 
 </configuration>

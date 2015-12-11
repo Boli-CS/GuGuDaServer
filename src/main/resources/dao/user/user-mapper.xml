@@ -3,11 +3,11 @@
 
 <mapper namespace="com.PitaYa.GuGuDa.dao.user.UserDao" >
 	
-	<select id="getUser" resultType="com.PitaYa.model.circle.User">
+	<select id="getUser" resultType="com.PitaYa.model.user.User">
 		select * from User where id = #{ID, jdbcType=INTEGER}
 	</select>
 
-	<insert id="insert" parameterType="com.PitaYa.model.circle.User">
+	<insert id="insert" parameterType="com.PitaYa.model.user.User">
 		insert into User(
 			HeadPortrait,
 			RegisterDate,

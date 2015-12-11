@@ -12,7 +12,7 @@ import com.PitaYa.GuGuDa.dao.user.UserDao;
 import com.PitaYa.GuGuDa.service.circle.CircleTableService;
 import com.PitaYa.domain.circle.CircleTableViewCellDomain;
 import com.PitaYa.model.circle.CircleTableViewCell;
-import com.PitaYa.model.circle.User;
+import com.PitaYa.model.user.User;
 import com.pitaya.GuGuDa.common.enums.CircleCellTypes;
 import com.pitaya.GuGuDa.common.utils.DateUtils;
 
