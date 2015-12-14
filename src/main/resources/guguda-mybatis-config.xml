@@ -9,5 +9,8 @@
 		
 		<!-- 运动 -->
 		<mapper resource = "dao/sport/sportrecord-mapper.xml"/>
+		
+		<!-- 系统变量配置 -->
+		<mapper resource = "dao/config/sysconfig-mapper.xml" />
 	</mappers> 
 </configuration>

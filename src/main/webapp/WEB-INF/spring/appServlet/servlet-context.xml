@@ -34,8 +34,13 @@
 		<constructor-arg type="java.lang.String" value="
 			com.PitaYa.GuGuDa.dao.circle,
 			com.PitaYa.GuGuDa.dao.user,
-			com.PitaYa.GuGuDa.dao.sport
+			com.PitaYa.GuGuDa.dao.sport,
+			com.PitaYa.GuGuDa.dao.config
 		"/>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="268435456"/> <!-- 256 megs -->
 	</bean>
 	
 	<!-- 数据库配置文件 -->

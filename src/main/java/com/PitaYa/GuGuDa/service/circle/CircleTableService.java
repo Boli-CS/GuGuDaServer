@@ -2,6 +2,8 @@ package com.PitaYa.GuGuDa.service.circle;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.PitaYa.domain.circle.CircleTableViewCellDomain;
 
 public interface CircleTableService {
@@ -11,5 +13,7 @@ public interface CircleTableService {
 	 * @param sportCircleCellType
 	 * @throws Exception 
 	 */
-	public List<CircleTableViewCellDomain> findNewestSportCircle(Integer sportCircleCellType) throws Exception;
+	public List<CircleTableViewCellDomain> findNewestSportCircle(Integer sportCircleCellType);
+	
+	public Boolean uploadNewCircleTrend(String fileName, MultipartFile multipartFile);
 }

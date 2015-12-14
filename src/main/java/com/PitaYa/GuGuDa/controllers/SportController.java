@@ -7,18 +7,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.PitaYa.GuGuDa.service.sport.SportRecordService;
-import com.PitaYa.domain.common.UpdateDataResult;
+import com.PitaYa.domain.common.UpladDataResult;
 import com.PitaYa.domain.sport.SportRecordDomain;
 
+/**
+ * 运动界面分发
+ * @author boli
+ *
+ */
 @RestController
-public class UpdateDataController {
+public class SportController {
 	
 	@Autowired
 	SportRecordService sportRecordService;
 
 	@RequestMapping(value="/updateSportRecord", method=RequestMethod.POST, headers = {"Content-type=application/json"})
-	public UpdateDataResult addSportRecord(@RequestBody SportRecordDomain sportRecordDomain) {
-		UpdateDataResult updateDataResult = new UpdateDataResult();
+	public UpladDataResult addSportRecord(@RequestBody SportRecordDomain sportRecordDomain) {
+		UpladDataResult updateDataResult = new UpladDataResult();
 		updateDataResult.setIsSuc(sportRecordService.insertNewSportRecord(sportRecordDomain));
 		return updateDataResult;
 	}
