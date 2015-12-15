@@ -44,18 +44,18 @@
 	</bean>
 	
 	<!-- 数据库配置文件 -->
-	<!-- <bean id="databaseConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="databaseConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc.properties"/>
-	</bean> -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
+		<property name="order" value="2147483647" />
+	</bean>
 		
 	<!-- 数据库配置 -->
 	<bean id="GuGuDaDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/GuGuDa"/>
-		<property name="user" value="root"/>
-		<property name="password" value="root"/>
-		<property name="maxIdleTime" value="20"/>
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="maxIdleTime" value="${jdbc.maxIdleTime}"/>
 	</bean>
 	
 	<bean id="GuGuDaSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -65,7 +65,7 @@
 	
 	<bean id="GuGuDaMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" ref="daoScanPackage"/>
-		<property name="sqlSessionFactory" ref="GuGuDaSqlSessionFactory"/>
+		<property name="sqlSessionFactoryBeanName" value="GuGuDaSqlSessionFactory"/>
 	</bean>
 	
 	<!-- 数据库事务管理 -->
