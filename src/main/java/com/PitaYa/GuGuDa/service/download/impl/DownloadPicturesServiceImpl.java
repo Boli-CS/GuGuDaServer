@@ -20,7 +20,7 @@ import com.PitaYa.GuGuDa.service.download.DownloadPicturesService;
 @Service("downloadPicturesServiceImpl")
 public class DownloadPicturesServiceImpl implements DownloadPicturesService {
 	
-	Logger logger = LoggerFactory.getLogger(DownloadPicturesServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(DownloadPicturesServiceImpl.class);
 
 	@Override
 	public boolean getDownloadPictureResponse(String filePathName, HttpServletResponse httpServletResponse) {

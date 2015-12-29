@@ -20,7 +20,7 @@ public class SportController {
 	
 	@Autowired
 	SportRecordService sportRecordService;
-
+	
 	@RequestMapping(value="/updateSportRecord", method=RequestMethod.POST, headers = {"Content-type=application/json"})
 	public UpladDataResult addSportRecord(@RequestBody SportRecordDomain sportRecordDomain) {
 		UpladDataResult updateDataResult = new UpladDataResult();

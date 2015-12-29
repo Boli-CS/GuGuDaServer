@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -38,7 +37,7 @@ public class CircleTableServiceImpl implements CircleTableService{
 	@Autowired
 	SysConfigDao sysConfigDao;
 	
-	Logger log = LoggerFactory.getLogger(CircleTableServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(CircleTableServiceImpl.class);
 	
 	@Override
 	public List<CircleTableViewCellDomain> findNewestSportCircle(Integer circleCellType) {
